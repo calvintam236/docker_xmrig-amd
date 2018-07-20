@@ -1,4 +1,4 @@
-FROM calvintam236/ubuntu:amd
+FROM calvintam236/ubuntu:amdgpu
 
 LABEL maintainer="calvintam236"
 LABEL description="XMRig-AMD in Docker. Supports GPU mining."

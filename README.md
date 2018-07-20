@@ -8,18 +8,18 @@ XMRig-AMD supports Cryptonight, Cryptonight-heavy and Cryptonight-lite.
 
 ### Example usages
 
-Replace `ARCH` for your graphic card architecture. Available option(s): `amd`
+Replace `ARCH` for your graphic card architecture. Available option(s): `amdgpu`, `mesa`
 
 - To run the container in background:
 
 ```console
-$ docker run -d --device /dev/kfd --device /dev/dri --name YOUR_CONTAINER_NAME calvintam236/xmrig-amd:amd -a YOUR_ALGO -o YOUR_POOL_ADDRESS -u YOUR_USERNAME.YOUR_WORKER_NAME -p YOUR_WORKER_PASSWORD
+$ docker run -d --device /dev/kfd --device /dev/dri --name YOUR_CONTAINER_NAME calvintam236/xmrig-amd:ARCH -a YOUR_ALGO -o YOUR_POOL_ADDRESS -u YOUR_USERNAME.YOUR_WORKER_NAME -p YOUR_WORKER_PASSWORD
 ```
 
 - Get `xmrig-amd` options:
 
 ```console
-$ docker run --rm calvintam236/xmrig-amd:amd
+$ docker run --rm calvintam236/xmrig-amd:ARCH
 ```
 
 - To fetch logs of a container:
