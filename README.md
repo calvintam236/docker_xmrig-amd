@@ -8,7 +8,7 @@ XMRig-AMD supports Cryptonight, Cryptonight-heavy and Cryptonight-lite.
 
 ### Example usages
 
-Replace `ARCH` for your graphic card architecture. Available option(s): `amdgpu`, `mesa`
+Replace `ARCH` for your graphic card architecture. Available option(s): `amdgpu`, `rocm`, `mesa`
 
 - To run the container in background:
 
