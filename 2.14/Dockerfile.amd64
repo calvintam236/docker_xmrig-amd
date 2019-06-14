@@ -1,0 +1,22 @@
+FROM ubuntu:bionic
+
+LABEL maintainer="calvintam236"
+LABEL description="XMRig-AMD in Docker. Supports GPU mining."
+
+WORKDIR /tmp/
+
+ADD \
+https://github.com/xmrig/xmrig-amd/releases/download/v2.14.4/xmrig-amd-2.14.4-xenial-x64.tar.gz \
+.
+
+RUN \
+apt-get update \
+&& apt-get -y --no-install-recommends install mesa-opencl-icd ocl-icd-opencl-dev \
+&& rm -rf /var/lib/apt/lists/* \
+&& tar -xvf xmrig-amd-2.14.4-xenial-x64.tar.gz \
+&& mv xmrig-amd-2.14.4/xmrig-amd /usr/local/bin/xmrig-amd \
+&& chmod +x /usr/local/bin/xmrig-amd \
+&& rm -r *
+
+ENTRYPOINT ["xmrig-amd"]
+CMD ["-h"]
