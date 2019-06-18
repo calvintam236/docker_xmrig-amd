@@ -1,0 +1,30 @@
+FROM ubuntu:bionic
+
+LABEL maintainer="calvintam236"
+LABEL description="XMRig-AMD in Docker. Supports GPU mining."
+
+WORKDIR /tmp/
+
+ADD \
+http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key \
+.
+
+ADD \
+https://github.com/xmrig/xmrig-amd/releases/download/v2.12.0/xmrig-amd-2.12.0-xenial-x64.tar.gz \
+.
+
+RUN \
+apt-get update \
+&& apt-get -y --no-install-recommends install gnupg2 \
+&& apt-key add rocm.gpg.key \
+&& echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' > /etc/apt/sources.list.d/rocm.list \
+&& apt-get update \
+&& apt-get -y --no-install-recommends install libnuma-dev rocm-dev \
+&& rm -rf /var/lib/apt/lists/* \
+&& tar -xvf xmrig-amd-2.12.0-xenial-x64.tar.gz \
+&& mv xmrig-amd-2.12.0/xmrig-amd /usr/local/bin/xmrig-amd \
+&& chmod +x /usr/local/bin/xmrig-amd \
+&& rm -r *
+
+ENTRYPOINT ["xmrig-amd"]
+CMD ["-h"]
